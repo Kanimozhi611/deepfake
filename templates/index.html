@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Deepfake Video Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="background-image"></div>
+
+  <div class="container fade-in">
+    <h1 class="heading-3d">🔍Deepfake Video Detector</h1>
+
+    <!-- Upload Form -->
+    <form id="uploadForm" action="/Detect" method="post" enctype="multipart/form-data">
+      <label class="file-label">
+        📁 Upload a video
+        <input type="file" name="video" id="videoInput" accept="video/*" required />
+      </label>
+
+      <div class="button-group">
+        <button type="submit" class="detect-btn">🎯 Detect</button>
+        <button type="button" id="resetBtn" class="reset-btn">🔄 Reset</button>
+      </div>
+    </form>
+    <p id="uploadNotice" class="upload-notice" style="display:none;"></p>
+
+    <!-- Processing Message -->
+    <div id="processingMessage" class="processing-message"></div>
+
+    <!-- Result Display -->
+    {% if result %}
+  <div id="resultBox" class="result-box">
+    {% if result.filename %}
+      <p><strong>Filename:</strong> {{ result.filename }}</p>
+    {% endif %}
+    <p>Prediction:
+      <span class="{{ 'real' if result.output == 'REAL' else 'fake' }}">{{ result.output }}</span>
+    </p>
+    <p>Confidence: <span>{{ result.confidence }}%</span></p>
+  </div>
+{% endif %}
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

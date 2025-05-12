@@ -1,0 +1,253 @@
+/* General reset & layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background */
+.background-image {
+  position: absolute;
+  inset: 0;
+  background: url('https://tse1.mm.bing.net/th?id=OIP.ToX2x-_Bk2KqmwDXVKI6xAHaEK&pid=Api&P=0&h=180') no-repeat center/cover;
+  opacity: 0.2;
+  filter: none;
+  z-index: 0;
+}
+
+/* Container */
+.container {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Title */
+h1 {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #00e6e6;
+  animation: slideDown 1s ease-out;
+}
+
+/* File upload styling */
+.file-label {
+  display: block;
+  margin: 1rem auto;
+  padding: 12px 20px;
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  width: fit-content;
+  animation: popUp 1s ease;
+}
+
+.file-label:hover {
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Button */
+button {
+  padding: 12px 25px;
+  margin-top: 1rem;
+  background: linear-gradient(to right, #00b09b, #96c93d);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #96c93d, #00b09b);
+}
+
+/* Status Indicators */
+.real {
+  color: #00ff99;
+}
+
+.fake {
+  color: #ff4d4d;
+}
+
+.processing-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #ffc107;
+}
+
+/* Result box */
+.result-box {
+  margin-top: 20px;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  font-size: 1.1rem;
+  animation: fadeIn 1.2s ease;
+}
+
+.result-box span {
+  font-weight: bold;
+}
+
+.result-box .real {
+  color: #00ff99;
+}
+
+.result-box .fake {
+  color: #ff4d4d;
+}
+/* Animate result box children one after another */
+.result-box p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideFadeIn 0.6s ease-out forwards;
+}
+
+.result-box p:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.result-box p:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.result-box p:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.upload-notice {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #00e6e6;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-40px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .file-label, button {
+    font-size: 0.9rem;
+  }
+}
+
+/* 3D Animated Heading */
+.heading-3d {
+  font-size: 2rem;
+  color: #0ff;
+  text-shadow: 
+    1px 1px 0 #0ff,
+    2px 2px 0 #0cc,
+    3px 3px 0 #099,
+    4px 4px 0 #066;
+  transform: perspective(300px) rotateX(10deg);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: perspective(300px) rotateX(10deg) translateY(0); }
+  50% { transform: perspective(300px) rotateX(10deg) translateY(-10px); }
+}
+
+/* Reset Button */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.reset-btn {
+  padding: 12px 25px;
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.reset-btn:hover {
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+}
+
+/* Spinner */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #00e6e6;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
